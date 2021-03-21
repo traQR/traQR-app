@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "550517854500",
+    "project_id": "traqr-api-oauth",
+    "storage_bucket": "traqr-api-oauth.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:550517854500:android:c2f89b5156d3d61c60e3b1",
+        "android_client_info": {
+          "package_name": "com.example.traqr_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "550517854500-sb8vg69fdrlu4hhqsn8517fu6t5lff07.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.traqr_app",
+            "certificate_hash": "390ec2f66b99f574e31032cf2b6cf6e52c862174"
+          }
+        },
+        {
+          "client_id": "550517854500-6ceg5d8jjctmekkqbjiq9sq52vu6a3ra.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBfIIdwb2dsAFTF_LmGaFFn-Ccy8Lo5kAE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "550517854500-6ceg5d8jjctmekkqbjiq9sq52vu6a3ra.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
