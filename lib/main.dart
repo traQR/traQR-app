@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:traqr_app/presentation/wrapper.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-void main() async {
+import 'presentation/screens/splash_screen.dart';
+
+void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
-  runApp(
-    MaterialApp(
-      home: Wrapper(),
-    ),
-  );
+  runApp(ProviderScope(child: MyApp()));
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: SplashScreen(),
+    );
+  }
 }

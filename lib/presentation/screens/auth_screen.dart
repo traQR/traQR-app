@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:traqr_app/services/auth.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:traqr_app/providers/auth_providers.dart';
 
-class LoginScreen extends StatefulWidget {
+class AuthScreen extends ConsumerWidget {
   @override
-  _LoginScreenState createState() => _LoginScreenState();
-}
+  Widget build(BuildContext context, ScopedReader watch) {
+    final _auth = watch(authServicesProvider);
 
-class _LoginScreenState extends State<LoginScreen> {
-  Auth _auth = Auth();
-  @override
-  Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
         child: Column(
