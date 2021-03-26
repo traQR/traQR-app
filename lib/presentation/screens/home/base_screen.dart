@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:traqr_app/presentation/screens/scan_screen.dart';
-import 'package:traqr_app/presentation/screens/settings_screen.dart';
-import 'package:traqr_app/providers/auth_providers.dart';
 
-class HomeScreen extends StatefulWidget {
+import 'home_screen.dart';
+import 'scan_screen.dart';
+import 'settings_screen.dart';
+
+class BaseScreen extends StatefulWidget {
   @override
-  _HomeScreenState createState() => _HomeScreenState();
+  _BaseScreenState createState() => _BaseScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _BaseScreenState extends State<BaseScreen> {
   int _selectedIndex = 0;
   void _onItemTapped(int index) {
     setState(() {
@@ -18,11 +18,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   static List<Widget> _widgetOptions = <Widget>[
-    Center(
-      child: Text(
-        'Home',
-      ),
-    ),
+    HomeScreen(),
     ScanScreen(),
     SettingsScreen(),
   ];
