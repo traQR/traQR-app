@@ -1,20 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:traqr_app/models/course.dart';
 
 class ClassCard extends StatelessWidget {
-  final String title;
-  final double attendance;
-  final String slot;
-  final int attendedClasses;
-  final int missedClasses;
+  final Course course;
 
-  ClassCard(
-      {this.title,
-      this.attendance,
-      this.slot,
-      this.attendedClasses,
-      this.missedClasses});
+  ClassCard({this.course});
   @override
   Widget build(BuildContext context) {
+    double attendance = course.attendedClasses /
+        (course.attendedClasses + course.missedClasses);
     return Container(
       padding: EdgeInsets.all(15),
       child: ClipRRect(
@@ -27,12 +21,15 @@ class ClassCard extends StatelessWidget {
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [Text(title), Text(attendance.toString())],
+                children: [
+                  Text(course.title),
+                  Text(' ${(attendance * 100).round().toString()}% '),
+                ],
               ),
-              Text(slot),
+              Text(course.slot),
               RichText(
                 text: TextSpan(
-                  text: attendedClasses.toString(),
+                  text: course.attendedClasses.toString(),
                   style: TextStyle(color: Colors.green),
                   children: <TextSpan>[
                     TextSpan(
@@ -40,7 +37,7 @@ class ClassCard extends StatelessWidget {
                       style: TextStyle(color: Colors.black),
                     ),
                     TextSpan(
-                        text: missedClasses.toString(),
+                        text: course.missedClasses.toString(),
                         style: TextStyle(
                             fontWeight: FontWeight.bold, color: Colors.red)),
                   ],
