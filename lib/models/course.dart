@@ -1,11 +1,11 @@
-class Class {
+class Course {
   final String title;
   final double attendance;
   final String slot;
   final int attendedClasses;
   final int missedClasses;
 
-  Class(
+  Course(
       {this.title,
       this.attendance,
       this.slot,
