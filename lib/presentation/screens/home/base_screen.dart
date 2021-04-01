@@ -29,6 +29,7 @@ class _BaseScreenState extends State<BaseScreen> {
       appBar: AppBar(title: Text("traQR")),
       body: _widgetOptions.elementAt(_selectedIndex),
       bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Colors.black,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),

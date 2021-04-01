@@ -16,14 +16,14 @@ class ClassCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(12),
         child: Container(
           padding: EdgeInsets.all(15),
-          color: Colors.blue[100],
+          color: Colors.black,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
                 width: 250,
-                height: 120,
+                height: 100,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   mainAxisSize: MainAxisSize.max,
