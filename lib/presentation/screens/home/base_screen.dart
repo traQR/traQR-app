@@ -45,7 +45,7 @@ class _BaseScreenState extends State<BaseScreen> {
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Colors.purple[800],
+        selectedItemColor: Color(0xffff2e63),
         onTap: _onItemTapped,
       ),
     );

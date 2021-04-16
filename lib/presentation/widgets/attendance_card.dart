@@ -14,7 +14,7 @@ class AttendanceCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(12),
           child: Container(
             padding: EdgeInsets.all(15),
-            color: Colors.black,
+            color: Color(0xff252a34),
             child: Row(
               children: [
                 Text(attendance.date),

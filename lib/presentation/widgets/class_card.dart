@@ -16,7 +16,7 @@ class ClassCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(12),
         child: Container(
           padding: EdgeInsets.all(15),
-          color: Colors.black,
+                color: Color(0xff252a34),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
