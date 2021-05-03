@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:traqr_app/presentation/theme.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:traqr_app/providers/auth_providers.dart';
 
 import 'home_screen.dart';
 import 'scan_screen.dart';
-import 'settings_screen.dart';
 
 class BaseScreen extends StatefulWidget {
   @override
@@ -21,34 +22,43 @@ class _BaseScreenState extends State<BaseScreen> {
   static List<Widget> _widgetOptions = <Widget>[
     HomeScreen(),
     ScanScreen(),
-    SettingsScreen(),
   ];
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text("traQR")),
-      body: _widgetOptions.elementAt(_selectedIndex),
-      bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.black,
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.qr_code),
-            label: 'Scan',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            label: 'Settings',
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: pink,
-        onTap: _onItemTapped,
-      ),
-    );
+    return Consumer(builder: (context, watch, child) {
+      final _auth = watch(authServicesProvider);
+      return Scaffold(
+        appBar: AppBar(
+          title: Text("traQR"),
+          actions: [
+            IconButton(
+              icon: Icon(
+                Icons.exit_to_app_rounded,
+                color: Colors.white,
+              ),
+              onPressed: () => _auth.signOut(),
+            )
+          ],
+        ),
+        body: _widgetOptions.elementAt(_selectedIndex),
+        bottomNavigationBar: BottomNavigationBar(
+          backgroundColor: Colors.black,
+          items: const <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: 'Home',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.qr_code),
+              label: 'Scan',
+            ),
+          ],
+          currentIndex: _selectedIndex,
+          selectedItemColor: pink,
+          onTap: _onItemTapped,
+        ),
+      );
+    });
   }
 }
