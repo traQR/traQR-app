@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'presentation/screens/splash_screen.dart';
+import 'presentation/theme.dart';
 
 main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(
         brightness: Brightness.dark,
-        primaryColor: Color(0xff08d9d6),
+        primaryColor: blu,
         scaffoldBackgroundColor: Colors.black,
       ),
       home: SplashScreen(),

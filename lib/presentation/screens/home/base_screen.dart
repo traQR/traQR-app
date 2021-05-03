@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:traqr_app/presentation/theme.dart';
 
 import 'home_screen.dart';
 import 'scan_screen.dart';
@@ -45,7 +46,7 @@ class _BaseScreenState extends State<BaseScreen> {
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Color(0xffff2e63),
+        selectedItemColor: pink,
         onTap: _onItemTapped,
       ),
     );

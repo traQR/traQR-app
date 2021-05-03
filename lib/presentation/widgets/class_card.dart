@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:traqr_app/models/course.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
+import 'package:traqr_app/presentation/theme.dart';
 
 class ClassCard extends StatelessWidget {
   final Course course;
@@ -16,14 +17,14 @@ class ClassCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(12),
         child: Container(
           padding: EdgeInsets.all(15),
-                color: Color(0xff252a34),
+          color: grey,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Container(
                 width: 250,
-                height: 100,
+                height: 120,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   mainAxisSize: MainAxisSize.max,
@@ -35,9 +36,14 @@ class ClassCard extends StatelessWidget {
                       style:
                           TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                     ),
-                    Text(
-                      course.slot,
-                      style: TextStyle(fontSize: 18),
+                    Container(
+                      padding: EdgeInsets.symmetric(vertical: 5, horizontal: 8),
+                      decoration: BoxDecoration(
+                          color: blu, borderRadius: BorderRadius.circular(12)),
+                      child: Text(
+                        course.slot,
+                        style: TextStyle(fontSize: 14, color: Colors.black),
+                      ),
                     ),
                     Row(
                       children: [
@@ -65,7 +71,7 @@ class ClassCard extends StatelessWidget {
                             height: 30,
                             width: 30,
                             padding: EdgeInsets.all(5),
-                            color: Colors.red[500],
+                            color: pink,
                             child: Center(
                               child: Text(
                                 course.missedClasses.toString(),
@@ -87,7 +93,7 @@ class ClassCard extends StatelessWidget {
                 percent: attendance,
                 center: Text(' ${(attendance * 100).round().toString()}% '),
                 backgroundColor: Colors.grey,
-                progressColor: attendance > 0.75 ? Colors.green : Colors.red,
+                progressColor: attendance > 0.75 ? green : pink,
               ),
             ],
           ),

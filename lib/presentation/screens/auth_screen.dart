@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:traqr_app/presentation/theme.dart';
 import 'package:traqr_app/providers/auth_providers.dart';
 
 class AuthScreen extends ConsumerWidget {
@@ -24,7 +25,7 @@ class AuthScreen extends ConsumerWidget {
                 style: ElevatedButton.styleFrom(
                   shape: RoundedRectangleBorder(
                       borderRadius: new BorderRadius.circular(30.0)),
-                  primary: Colors.red[400],
+                  primary: pink,
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
