@@ -61,13 +61,13 @@ class _ScanScreenState extends State<ScanScreen> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Image.asset(
-                    'assets/traQR.png',
-                    height: 80,
-                  ),
                   Text(
                     "Scan QR Code",
                     style: TextStyle(color: Colors.white, fontSize: 24),
+                  ),
+                  Image.asset(
+                    'assets/traQR.png',
+                    height: 80,
                   ),
                 ],
               ),
@@ -76,7 +76,7 @@ class _ScanScreenState extends State<ScanScreen> {
               },
             ),
           ),
-          Text('Scan result : $_scanBarcode\n', style: TextStyle(fontSize: 20))
+          // Text('Scan result : $_scanBarcode\n', style: TextStyle(fontSize: 20))
         ],
       ),
     );

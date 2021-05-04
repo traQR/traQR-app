@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:traqr_app/models/course.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:traqr_app/presentation/theme.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 
 class ClassCard extends StatelessWidget {
   final Course course;
@@ -30,11 +31,12 @@ class ClassCard extends StatelessWidget {
                   mainAxisSize: MainAxisSize.max,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
+                    AutoSizeText(
                       course.title,
                       overflow: TextOverflow.visible,
                       style:
                           TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                      maxLines: 1,
                     ),
                     Container(
                       padding: EdgeInsets.symmetric(vertical: 5, horizontal: 8),
