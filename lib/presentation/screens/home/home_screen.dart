@@ -31,20 +31,13 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        child: SingleChildScrollView(
-      child: Column(
-        children: [
-          ListView.builder(
-            shrinkWrap: true,
-            itemCount: _courses.length,
-            itemBuilder: (context, index) {
-              return ClassCard(
-                course: _courses[index],
-              );
-            },
-          ),
-        ],
-      ),
+        child: ListView.builder(
+      itemCount: _courses.length,
+      itemBuilder: (context, index) {
+        return ClassCard(
+          course: _courses[index],
+        );
+      },
     ));
   }
 }
