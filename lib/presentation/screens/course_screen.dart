@@ -35,7 +35,10 @@ class _CourseScreenState extends State<CourseScreen> {
           child: SingleChildScrollView(
         child: Column(
           children: [
-            ClassCard(course: widget.course),
+            ClassCard(
+              course: widget.course,
+              push: false,
+            ),
             ListView.builder(
               shrinkWrap: true,
               itemCount: _attendanceList.length,

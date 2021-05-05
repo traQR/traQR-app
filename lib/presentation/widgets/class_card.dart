@@ -7,18 +7,18 @@ import 'package:auto_size_text/auto_size_text.dart';
 
 class ClassCard extends StatelessWidget {
   final Course course;
-
-  ClassCard({this.course});
+  final bool push;
+  ClassCard({this.course, this.push});
   @override
   Widget build(BuildContext context) {
     double attendance = course.attendedClasses /
         (course.attendedClasses + course.missedClasses);
     return GestureDetector(
-      onTap: () => Navigator.push(
+      onTap: () => push == true ? Navigator.push(
           context,
           MaterialPageRoute(
             builder: (context) => CourseScreen(course),
-          )),
+          )) : null,
       child: Container(
         padding: EdgeInsets.all(15),
         child: ClipRRect(

@@ -36,6 +36,7 @@ class _HomeScreenState extends State<HomeScreen> {
       itemBuilder: (context, index) {
         return ClassCard(
           course: _courses[index],
+          push: true,
         );
       },
     ));
