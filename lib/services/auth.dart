@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:traqr_app/services/shared_prefs.dart';
 
 class Auth {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -20,6 +21,7 @@ class Auth {
 
     final UserCredential authResult =
         await _auth.signInWithCredential(credential);
+    bool isNewUser = authResult.additionalUserInfo.isNewUser;
     final User user = authResult.user;
 
     if (user != null) {
@@ -29,7 +31,17 @@ class Auth {
       final User currentUser = _auth.currentUser;
       assert(user.uid == currentUser.uid);
 
-      print('signInWithGoogle succeeded.');
+      print('signInWithGoogle succeeded. $user');
+      if (!user.email.contains('@vitstudent.ac.in'))
+        signOut();
+      else
+        return false;
+      String regNo = user.displayName.substring(user.displayName.length - 9);
+      print(regNo);
+      sharedPreferences.setString('regNo', regNo);
+      if (isNewUser) {
+        //do that shit
+      }
     }
   }
 
