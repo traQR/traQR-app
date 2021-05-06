@@ -20,7 +20,7 @@ class CoursesResponse {
   CoursesResponse({this.courses});
 
   CoursesResponse.fromJson(Map<String, dynamic> json) {
-    if (json['courses'] != null) courses = <Course>[];
+    if (json['coursestaken'] != null) courses = <Course>[];
     json['courses'].forEach((c) {
       courses.add(Course.fromJson(c));
     });

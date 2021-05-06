@@ -6,13 +6,18 @@ import 'package:traqr_app/services/api_response.dart';
 class CourseController extends GetxController {
   final CourseRepository repository = CourseRepository();
 
-  var coursesObs = ApiResponse<CoursesResponse>().obs;
-  ApiResponse<CoursesResponse> get courses => coursesObs.value;
+  var coursesDetailsObs = ApiResponse<CoursesResponse>().obs;
+  ApiResponse<CoursesResponse> get coursesDetails => coursesDetailsObs.value;
+  var courses = <Course>[].obs;
 
   getCourses(String regNo) async {
-    coursesObs.value = ApiResponse<CoursesResponse>.loading();
+    coursesDetailsObs.value = ApiResponse<CoursesResponse>.loading();
     final response = await repository.getCourseDetails(regNo);
-    coursesObs.value = response;
+    if (response.status == Status.COMPLETED) {
+      coursesDetailsObs.value = response;
+      update();
+    }
+    coursesDetailsObs.value = response;
     update();
   }
 }

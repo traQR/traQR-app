@@ -18,11 +18,16 @@ class CourseRepository {
       );
 
       print(response.statusCode);
+      print(response.body);
 
       switch (response.statusCode) {
         case 200:
-          return ApiResponse.completed(
-              CoursesResponse.fromJson(jsonDecode(response.body)));
+          if (response.body.isNotEmpty) {
+            return ApiResponse.completed(
+                CoursesResponse.fromJson(jsonDecode(response.body)));
+          } else {
+            return ApiResponse.error('No classes.');
+          }
       }
     } catch (e) {
       print(e);

@@ -40,26 +40,31 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Container(child: Obx(
       () {
-        var courses = _controller.courses.data;
-        switch (_controller.courses.status) {
-          case Status.INIT:
-            break;
-          case Status.LOADING:
-            return Center(child: CircularProgressIndicator());
-          case Status.ERROR:
-            return Text(_controller.courses.message);
-          case Status.COMPLETED:
-            return ListView.builder(
-              itemCount: courses.courses.length,
-              itemBuilder: (context, index) {
-                return ClassCard(
-                  course: _courses[index],
-                  push: true,
-                );
-              },
-            );
-        }
-        return Container();
+        if (_controller.courses != null)
+          switch (_controller.coursesDetails.status) {
+            case Status.INIT:
+              break;
+            case Status.LOADING:
+              return Center(child: CircularProgressIndicator());
+            case Status.ERROR:
+              return Center(
+                child: Text("Scan a QR code to join a course!"),
+              );
+            case Status.COMPLETED:
+              var courses = _controller.courses;
+              return ListView.builder(
+                itemCount: courses.length,
+                itemBuilder: (context, index) {
+                  return ClassCard(
+                    course: _courses[index],
+                    push: true,
+                  );
+                },
+              );
+          }
+        return Center(
+          child: Text("Scan a QR code to join a course!"),
+        );
       },
     ));
   }
