@@ -10,9 +10,9 @@ class CourseController extends GetxController {
   ApiResponse<CoursesResponse> get coursesDetails => coursesDetailsObs.value;
   var courses = <Course>[].obs;
 
-  getCourses(String regNo) async {
+  getAttendance(String regNo) async {
     coursesDetailsObs.value = ApiResponse<CoursesResponse>.loading();
-    final response = await repository.getCourseDetails(regNo);
+    final response = await repository.getAttendance(regNo);
     if (response.status == Status.COMPLETED) {
       coursesDetailsObs.value = response;
       update();

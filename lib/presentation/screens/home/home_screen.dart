@@ -19,7 +19,8 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     regNo = sharedPreferences.getString('regNo');
-    _controller.getCourses(regNo);
+    print(regNo);
+    _controller.getAttendance(regNo);
     _courses = [
       Course(
           title: 'Software Engineering',
@@ -52,6 +53,10 @@ class _HomeScreenState extends State<HomeScreen> {
               );
             case Status.COMPLETED:
               var courses = _controller.courses;
+              if (courses.isEmpty)
+                return Center(
+                  child: Text("Scan a QR code to join a course!"),
+                );
               return ListView.builder(
                 itemCount: courses.length,
                 itemBuilder: (context, index) {

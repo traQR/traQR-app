@@ -43,14 +43,7 @@ class AuthScreen extends ConsumerWidget {
                   ],
                 ),
                 onPressed: () {
-                  _auth.signInWithGoogle().then((value) async {
-                    if (value == false) {
-                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                        content: const Text('Please use your VIT email'),
-                        duration: const Duration(seconds: 3),
-                      ));
-                    }
-                  });
+                  _auth.signInWithGoogle();
                 },
               ),
             )

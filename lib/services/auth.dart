@@ -32,10 +32,7 @@ class Auth {
       assert(user.uid == currentUser.uid);
 
       print('signInWithGoogle succeeded. $user');
-      if (!user.email.contains('@vitstudent.ac.in'))
-        signOut();
-      else
-        return false;
+      if (!user.email.contains('@vitstudent.ac.in')) signOut();
       String regNo = user.displayName.substring(user.displayName.length - 9);
       print(regNo);
       sharedPreferences.setString('regNo', regNo);

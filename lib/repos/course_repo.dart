@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:traqr_app/models/course.dart';
 import 'package:traqr_app/services/api_response.dart';
@@ -6,15 +7,14 @@ import 'package:traqr_app/services/api_routes.dart';
 import 'package:http/http.dart' as http;
 
 class CourseRepository {
-  Future<ApiResponse<CoursesResponse>> getCourseDetails(String regNo) async {
-    print("entered getCourseDetails");
-    final url = BaseUrl + CoursesGroup;
+  Future<ApiResponse<CoursesResponse>> getAttendance(String regNo) async {
+    print("entered getAttendance");
+    final url = BaseUrl + AttendanceGroup;
     try {
       final response = await http.post(
         Uri.parse(url),
-        body: jsonEncode(
-          {'regNo': regNo},
-        ),
+        headers: {HttpHeaders.contentTypeHeader: "application/json"},
+        body: jsonEncode({"regNo": regNo}),
       );
 
       print(response.statusCode);
