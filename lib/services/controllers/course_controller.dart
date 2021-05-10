@@ -14,7 +14,7 @@ class CourseController extends GetxController {
     coursesDetailsObs.value = ApiResponse<CoursesResponse>.loading();
     final response = await repository.getAttendance(regNo);
     if (response.status == Status.COMPLETED) {
-      coursesDetailsObs.value = response;
+      courses.value = response.data.courses;
       update();
     }
     coursesDetailsObs.value = response;

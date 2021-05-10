@@ -19,7 +19,6 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     regNo = sharedPreferences.getString('regNo');
-    print(regNo);
     _controller.getAttendance(regNo);
     _courses = [
       Course(

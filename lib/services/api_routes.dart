@@ -4,3 +4,5 @@ const String CoursesGroup = '/courses';
 const String CourseDetailsRoute = '/courseID';
 
 const String AttendanceGroup = '/attendance';
+
+const String NewUserRoute = '/newUser';
