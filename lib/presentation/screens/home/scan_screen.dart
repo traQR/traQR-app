@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:traqr_app/presentation/theme.dart';
+import 'package:traqr_app/repos/scan_repo.dart';
 
 class ScanScreen extends StatefulWidget {
   @override
@@ -11,6 +12,7 @@ class ScanScreen extends StatefulWidget {
 class _ScanScreenState extends State<ScanScreen> {
   String _scanBarcode = 'Unknown';
   Map<String, dynamic> jsonResponse;
+  final ScanRepository _repository = ScanRepository();
 
   @override
   void initState() {
@@ -26,7 +28,7 @@ class _ScanScreenState extends State<ScanScreen> {
       "courseName": "DSA",
       "slot": "C1",
       "start": "2021-05-11T14:14:00.000",
-      "end": "2021-03-11T13:34:00.000"
+      "end": "2021-05-11T16:45:00.000"
     };
     super.initState();
   }
@@ -81,7 +83,8 @@ class _ScanScreenState extends State<ScanScreen> {
                 ],
               ),
               onPressed: () {
-                scanQR();
+                // scanQR();
+                _repository.scanCode(jsonResponse);
               },
             ),
           ),
