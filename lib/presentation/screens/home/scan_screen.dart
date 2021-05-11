@@ -10,6 +10,7 @@ class ScanScreen extends StatefulWidget {
 
 class _ScanScreenState extends State<ScanScreen> {
   String _scanBarcode = 'Unknown';
+  Map<String, dynamic> jsonResponse;
 
   @override
   void initState() {
@@ -19,6 +20,14 @@ class _ScanScreenState extends State<ScanScreen> {
           .listen((barcode) => print(barcode));
     }
 
+    jsonResponse = {
+      "facID": "askmaslkd",
+      "courseID": "sadas",
+      "courseName": "DSA",
+      "slot": "C1",
+      "start": "2021-05-11T14:14:00.000",
+      "end": "2021-03-11T13:34:00.000"
+    };
     super.initState();
   }
 

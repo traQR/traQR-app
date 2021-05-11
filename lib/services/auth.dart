@@ -41,7 +41,6 @@ class Auth {
       if (isNewUser) {
         print("new user!!! omg");
         await _repository.addUser(regNo, user.displayName);
-        //do that shit
       }
     }
   }
