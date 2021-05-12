@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:traqr_app/models/attendance.dart';
 import 'package:traqr_app/models/course.dart';
+import 'package:traqr_app/presentation/screens/chat_screen.dart';
+import 'package:traqr_app/presentation/theme.dart';
 import 'package:traqr_app/presentation/widgets/attendance_card.dart';
 import 'package:traqr_app/presentation/widgets/class_card.dart';
 
@@ -30,6 +32,19 @@ class _CourseScreenState extends State<CourseScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text("traQR"),
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(
+          Icons.chat_bubble_rounded,
+          color: grey,
+        ),
+        onPressed: () => Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => ChatScreen(
+                course: widget.course,
+              ),
+            )),
       ),
       body: Container(
           child: SingleChildScrollView(

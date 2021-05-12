@@ -51,13 +51,13 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Text("Scan a QR code to join a course!"),
               );
             case Status.COMPLETED:
-              var courses = _controller.courses;
-              if (courses.isEmpty)
-                return Center(
-                  child: Text("Scan a QR code to join a course!"),
-                );
+              // var courses = _controller.courses;
+              // if (courses.isEmpty)
+              // return Center(
+              // child: Text("Scan a QR code to join a course!"),
+              // );
               return ListView.builder(
-                itemCount: courses.length,
+                itemCount: _courses.length,
                 itemBuilder: (context, index) {
                   return ClassCard(
                     course: _courses[index],
