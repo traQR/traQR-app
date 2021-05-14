@@ -11,12 +11,23 @@ class ScanRepository {
     var json = jsonResponse;
     DateTime start = DateTime.parse(json['start']);
     DateTime end = DateTime.parse(json['end']);
+    String courseID = json['courseID'];
+    String courseName = json['courseName'];
+    String slot = json['slot'];
     print(end);
     print(DateTime.now().isBefore(end));
     if (DateTime.now().isBefore(end)) {
-      await _markAttendance(true, json['courseID']);
+      await _markAttendance(true, courseID).then((value) async {
+        if (value == 400) {
+          await _addStudent(courseID, courseName, slot);
+        }
+      });
     } else {
-      await _markAttendance(false, json['courseID']);
+      await _markAttendance(false, courseID).then((value) async {
+        if (value == 400) {
+          await _addStudent(courseID, courseName, slot);
+        }
+      });
     }
   }
 
@@ -32,6 +43,27 @@ class ScanRepository {
         "regNo": regNo,
         "courseID": courseID,
         "date": DateTime.now().toString()
+      }),
+    );
+
+    print(response.statusCode);
+    print(response.body);
+
+    return response.statusCode;
+  }
+
+  Future _addStudent(String courseID, String courseName, String slot) async {
+    print("Entered addStudent route ");
+    final regNo = sharedPreferences.getString('regNo');
+    final _url = BaseUrl + AddStudentRoute;
+    final response = await http.post(
+      Uri.parse(_url),
+      headers: {HttpHeaders.contentTypeHeader: "application/json"},
+      body: jsonEncode({
+        "regNo": regNo,
+        "courseID": courseID,
+        "courseName": courseName,
+        "slot": slot
       }),
     );
 

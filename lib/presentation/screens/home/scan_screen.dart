@@ -24,7 +24,7 @@ class _ScanScreenState extends State<ScanScreen> {
 
     jsonResponse = {
       "facID": "askmaslkd",
-      "courseID": "sadas",
+      "courseID": "abcdef",
       "courseName": "DSA",
       "slot": "C1",
       "start": "2021-05-11T14:14:00.000",
