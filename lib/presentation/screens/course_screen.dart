@@ -33,19 +33,19 @@ class _CourseScreenState extends State<CourseScreen> {
       appBar: AppBar(
         title: Text("traQR"),
       ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(
-          Icons.chat_bubble_rounded,
-          color: grey,
-        ),
-        onPressed: () => Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => ChatScreen(
-                course: widget.course,
-              ),
-            )),
-      ),
+      // floatingActionButton: FloatingActionButton(
+      //   child: Icon(
+      //     Icons.chat_bubble_rounded,
+      //     color: grey,
+      //   ),
+      //   onPressed: () => Navigator.push(
+      //       context,
+      //       MaterialPageRoute(
+      //         builder: (context) => ChatScreen(
+      //           course: widget.course,
+      //         ),
+      //       )),
+      // ),
       body: Container(
           child: SingleChildScrollView(
         child: Column(
