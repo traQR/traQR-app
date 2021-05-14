@@ -1,11 +1,18 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:traqr_app/models/attendance.dart';
 import 'package:traqr_app/services/api_routes.dart';
 import 'package:http/http.dart' as http;
+import 'package:get/get.dart';
+import 'package:traqr_app/services/controllers/attendance_controller.dart';
+import 'package:traqr_app/services/controllers/course_controller.dart';
 import 'package:traqr_app/services/shared_prefs.dart';
 
 class ScanRepository {
+  CourseController _coursesController = Get.find<CourseController>();
+  AttendanceController _attendanceController = Get.find<AttendanceController>();
+
   Future scanCode(Map<String, dynamic> jsonResponse) async {
     // json = jsonDecode(jsonResponse);
     var json = jsonResponse;
@@ -69,5 +76,23 @@ class ScanRepository {
 
     print(response.statusCode);
     print(response.body);
+  }
+
+  fakeScanCode() {
+    fakeMarkAttendance();
+  }
+
+  fakeMarkAttendance() {
+    _coursesController.fakeAddCourse(
+        'Data Structures and Algorithms', 'D1+ TD1');
+    _attendanceController.attendanceList
+        .add(Attendance(attended: true, date: 'Friday 15-5-2021'));
+    // print(_attendanceController.attendanceList.length);
+    print(_coursesController.courses.length);
+  }
+
+  _fakeAddStudent() {
+    _coursesController.fakeAddCourse(
+        'Data Structures and Algorithms', 'D1+ TD1');
   }
 }

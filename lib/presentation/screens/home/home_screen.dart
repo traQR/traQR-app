@@ -12,27 +12,12 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  List<Course> _courses = [];
   String regNo;
   final CourseController _controller = Get.find<CourseController>();
 
   @override
   void initState() {
     regNo = sharedPreferences.getString('regNo');
-    _controller.getAttendance(regNo);
-    _courses = [
-      Course(
-          title: 'Software Engineering',
-          slot: 'L51 + L52',
-          attendedClasses: 10,
-          missedClasses: 4),
-      Course(
-          title: 'Network and Communication',
-          slot: 'L31 + L32',
-          attendedClasses: 12,
-          missedClasses: 2)
-    ];
-
     super.initState();
   }
 
@@ -40,35 +25,40 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Container(child: Obx(
       () {
-        if (_controller.courses != null)
-          switch (_controller.coursesDetails.status) {
-            case Status.INIT:
-              break;
-            case Status.LOADING:
-              return Center(child: CircularProgressIndicator());
-            case Status.ERROR:
-              return Center(
-                child: Text("Scan a QR code to join a course!"),
+        print(_controller.courses.length);
+        if (_controller.courses != null) {
+          // switch (_controller.coursesDetails.status) {
+          //   case Status.INIT:
+          //     return Container();
+          //     break;
+          //   case Status.LOADING:
+          //     return Center(child: CircularProgressIndicator());
+          //   case Status.ERROR:
+          //     return Center(
+          //       child: Text("Scan a QR code to join a course!"),
+          //     );
+          //   case Status.COMPLETED:
+          var courses = _controller.courses;
+          if (courses.isEmpty)
+            return Center(
+              child: Text("Scan a QR code to join a course!!"),
+            );
+          return ListView.builder(
+            itemCount: courses.length,
+            itemBuilder: (context, index) {
+              return ClassCard(
+                course: courses[index],
+                push: true,
               );
-            case Status.COMPLETED:
-              // var courses = _controller.courses;
-              // if (courses.isEmpty)
-              // return Center(
-              // child: Text("Scan a QR code to join a course!"),
-              // );
-              return ListView.builder(
-                itemCount: _courses.length,
-                itemBuilder: (context, index) {
-                  return ClassCard(
-                    course: _courses[index],
-                    push: true,
-                  );
-                },
-              );
-          }
-        return Center(
-          child: Text("Scan a QR code to join a course!"),
-        );
+            },
+          );
+          // }
+          print(_controller.courses.length);
+        } else {
+          return Center(
+            child: Text("Scan a QR code to join a course!!!"),
+          );
+        }
       },
     ));
   }

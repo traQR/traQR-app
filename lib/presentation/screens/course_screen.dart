@@ -5,6 +5,8 @@ import 'package:traqr_app/presentation/screens/chat_screen.dart';
 import 'package:traqr_app/presentation/theme.dart';
 import 'package:traqr_app/presentation/widgets/attendance_card.dart';
 import 'package:traqr_app/presentation/widgets/class_card.dart';
+import 'package:get/get.dart';
+import 'package:traqr_app/services/controllers/attendance_controller.dart';
 
 class CourseScreen extends StatefulWidget {
   final Course course;
@@ -16,14 +18,10 @@ class CourseScreen extends StatefulWidget {
 }
 
 class _CourseScreenState extends State<CourseScreen> {
-  List<Attendance> _attendanceList = [];
+  AttendanceController _controller = Get.find<AttendanceController>();
 
   @override
   void initState() {
-    _attendanceList = [
-      Attendance(attended: true, date: 'Friday 22-4-2021'),
-      Attendance(attended: false, date: 'Monday 25-4-2021')
-    ];
     super.initState();
   }
 
@@ -46,24 +44,27 @@ class _CourseScreenState extends State<CourseScreen> {
       //         ),
       //       )),
       // ),
-      body: Container(
-          child: SingleChildScrollView(
-        child: Column(
-          children: [
-            ClassCard(
-              course: widget.course,
-              push: false,
-            ),
-            ListView.builder(
-              shrinkWrap: true,
-              itemCount: _attendanceList.length,
-              itemBuilder: (context, index) {
-                return AttendanceCard(_attendanceList[index]);
-              },
-            ),
-          ],
-        ),
-      )),
+      body: Obx(() {
+        print(_controller.attendanceList.length);
+        return Container(
+            child: SingleChildScrollView(
+          child: Column(
+            children: [
+              ClassCard(
+                course: widget.course,
+                push: false,
+              ),
+              ListView.builder(
+                shrinkWrap: true,
+                itemCount: _controller.attendanceList.length,
+                itemBuilder: (context, index) {
+                  return AttendanceCard(_controller.attendanceList[index]);
+                },
+              ),
+            ],
+          ),
+        ));
+      }),
     );
   }
 }
