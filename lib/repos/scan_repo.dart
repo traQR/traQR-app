@@ -83,16 +83,17 @@ class ScanRepository {
   }
 
   fakeMarkAttendance() {
-    _coursesController.fakeAddCourse(
-        'Data Structures and Algorithms', 'D1+ TD1');
+    _coursesController.fakeAddCourse('Software Engineering', 'D1');
     _attendanceController.attendanceList
-        .add(Attendance(attended: true, date: 'Friday 15-5-2021'));
+        .add(Attendance(attended: true, date: 'Friday 15-05-2021'));
     // print(_attendanceController.attendanceList.length);
     print(_coursesController.courses.length);
   }
 
   _fakeAddStudent() {
     _coursesController.fakeAddCourse(
-        'Data Structures and Algorithms', 'D1+ TD1');
+      'Software Engineering',
+      'D1',
+    );
   }
 }

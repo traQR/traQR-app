@@ -83,7 +83,7 @@ class _ScanScreenState extends State<ScanScreen> {
                 ],
               ),
               onPressed: () {
-                // scanQR();
+                scanQR();
                 // _repository.scanCode(jsonResponse);
                 _repository.fakeScanCode();
               },
