@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:traqr_app/models/attendance.dart';
 import 'package:traqr_app/models/course.dart';
 import 'package:traqr_app/repos/course_repo.dart';
 import 'package:traqr_app/services/api_response.dart';
@@ -18,6 +19,23 @@ class CourseController extends GetxController {
       update();
     }
     coursesDetailsObs.value = response;
+    update();
+  }
+
+  var attendanceHistoryObs = ApiResponse<AttendanceResponse>().obs;
+  ApiResponse<AttendanceResponse> get attendanceHistory =>
+      attendanceHistoryObs.value;
+  var attendanceList = <Attendance>[].obs;
+
+  getAttendanceHistory(String regNo, String courseID) async {
+    attendanceHistoryObs.value = ApiResponse<AttendanceResponse>.loading();
+    final response = await repository.getAttendanceHistory(regNo, courseID);
+    attendanceList.value = response.data.attendanceList;
+    if (response.status == Status.COMPLETED) {
+      attendanceList.value = response.data.attendanceList;
+      update();
+    }
+    attendanceHistoryObs.value = response;
     update();
   }
 

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:traqr_app/models/attendance.dart';
 import 'package:traqr_app/presentation/theme.dart';
 
@@ -19,13 +20,15 @@ class AttendanceCard extends StatelessWidget {
             color: grey,
             child: Row(
               children: [
-                Text(attendance.date),
+                Text(DateFormat.yMMMMEEEEd()
+                    .format(DateTime.parse(attendance.date))
+                    .toString()),
                 Spacer(),
                 Icon(
-                  attendance.attended == true
+                  attendance.status == true
                       ? Icons.done_rounded
                       : Icons.close_rounded,
-                  color: attendance.attended == true ? green : pink,
+                  color: attendance.status == true ? green : pink,
                 )
               ],
             ),

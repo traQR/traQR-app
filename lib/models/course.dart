@@ -11,6 +11,8 @@ class Course {
     id = json['courseID'];
     title = json['courseName'];
     slot = json['slot'];
+    attendedClasses = json['present'];
+    missedClasses = json['absent'];
   }
 }
 

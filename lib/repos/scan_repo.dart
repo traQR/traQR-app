@@ -5,13 +5,11 @@ import 'package:traqr_app/models/attendance.dart';
 import 'package:traqr_app/services/api_routes.dart';
 import 'package:http/http.dart' as http;
 import 'package:get/get.dart';
-import 'package:traqr_app/services/controllers/attendance_controller.dart';
 import 'package:traqr_app/services/controllers/course_controller.dart';
 import 'package:traqr_app/services/shared_prefs.dart';
 
 class ScanRepository {
   CourseController _coursesController = Get.find<CourseController>();
-  AttendanceController _attendanceController = Get.find<AttendanceController>();
 
   Future scanCode(Map<String, dynamic> jsonResponse) async {
     // json = jsonDecode(jsonResponse);
@@ -78,22 +76,22 @@ class ScanRepository {
     print(response.body);
   }
 
-  fakeScanCode() {
-    fakeMarkAttendance();
-  }
+  // fakeScanCode() {
+  //   fakeMarkAttendance();
+  // }
 
-  fakeMarkAttendance() {
-    _coursesController.fakeAddCourse('Software Engineering', 'D1');
-    _attendanceController.attendanceList
-        .add(Attendance(attended: true, date: 'Friday 15-05-2021'));
-    // print(_attendanceController.attendanceList.length);
-    print(_coursesController.courses.length);
-  }
+  // fakeMarkAttendance() {
+  //   _coursesController.fakeAddCourse('Software Engineering', 'D1');
+  //   _attendanceController.attendanceList
+  //       .add(Attendance(status: true, date: 'Friday 15-05-2021'));
+  //   // print(_attendanceController.attendanceList.length);
+  //   print(_coursesController.courses.length);
+  // }
 
-  _fakeAddStudent() {
-    _coursesController.fakeAddCourse(
-      'Software Engineering',
-      'D1',
-    );
-  }
+  // _fakeAddStudent() {
+  //   _coursesController.fakeAddCourse(
+  //     'Software Engineering',
+  //     'D1',
+  //   );
+  // }
 }
