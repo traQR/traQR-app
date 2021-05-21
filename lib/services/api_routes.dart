@@ -8,3 +8,5 @@ const String AttendanceGroup = '/attendance';
 const String NewUserRoute = '/newUser';
 const String MarkAttendanceRoute = '/markAttendance';
 const String AddStudentRoute = '/addStudent';
+
+const String CheckCourseRoute = '/checkCourse';

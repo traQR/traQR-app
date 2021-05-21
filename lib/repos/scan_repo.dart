@@ -11,29 +11,25 @@ import 'package:traqr_app/services/shared_prefs.dart';
 class ScanRepository {
   CourseController _coursesController = Get.find<CourseController>();
 
-  Future scanCode(Map<String, dynamic> jsonResponse) async {
-    // json = jsonDecode(jsonResponse);
-    var json = jsonResponse;
-    DateTime start = DateTime.parse(json['start']);
-    DateTime end = DateTime.parse(json['end']);
-    String courseID = json['courseID'];
-    String courseName = json['courseName'];
-    String slot = json['slot'];
-    print(end);
-    print(DateTime.now().isBefore(end));
-    if (DateTime.now().isBefore(end)) {
-      await _markAttendance(true, courseID).then((value) async {
-        if (value == 400) {
-          await _addStudent(courseID, courseName, slot);
-        }
-      });
-    } else {
-      await _markAttendance(false, courseID).then((value) async {
-        if (value == 400) {
-          await _addStudent(courseID, courseName, slot);
-        }
-      });
-    }
+  Future scanCode(List<String> strings) async {
+    String courseID = strings[0].substring(1);
+    // DateTime start = DateTime.parse(strings[1]);
+    // DateTime end = DateTime.parse(strings[2]);
+    // print(DateTime.now().isBefore(end));
+    var a = await _checkCourse(courseID);
+    // if (DateTime.now().isBefore(end)) {
+    //   await _markAttendance(true, courseID).then((value) async {
+    //     if (value == 400) {
+    //       // await _addStudent(courseID);
+    //     }
+    //   });
+    // } else {
+    //   await _markAttendance(false, courseID).then((value) async {
+    //     if (value == 400) {
+    //       // await _addStudent(courseID);
+    //     }
+    //   });
+    // }
   }
 
   Future _markAttendance(bool status, String courseID) async {
@@ -57,7 +53,7 @@ class ScanRepository {
     return response.statusCode;
   }
 
-  Future _addStudent(String courseID, String courseName, String slot) async {
+  Future _addStudent(String courseID) async {
     print("Entered addStudent route ");
     final regNo = sharedPreferences.getString('regNo');
     final _url = BaseUrl + AddStudentRoute;
@@ -67,13 +63,30 @@ class ScanRepository {
       body: jsonEncode({
         "regNo": regNo,
         "courseID": courseID,
-        "courseName": courseName,
-        "slot": slot
       }),
     );
 
     print(response.statusCode);
     print(response.body);
+  }
+
+  Future _checkCourse(String courseID) async {
+    print("Entered checkCourse route");
+    final regNo = sharedPreferences.getString('regNo');
+    final _url = BaseUrl + CheckCourseRoute;
+    print(courseID);
+    final response = await http.post(
+      Uri.parse(_url),
+      headers: {HttpHeaders.contentTypeHeader: "application/json"},
+      body: jsonEncode({
+        "regNo": regNo,
+        "courseID": courseID,
+      }),
+    );
+
+    var result = jsonDecode(response.body)['isNew'];
+    print(result);
+    return result;
   }
 
   // fakeScanCode() {

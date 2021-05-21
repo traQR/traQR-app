@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
@@ -39,7 +41,6 @@ class _ScanScreenState extends State<ScanScreen> {
     try {
       barcodeScanRes = await FlutterBarcodeScanner.scanBarcode(
           "#ff44C951", "Cancel", true, ScanMode.QR);
-      print(barcodeScanRes);
     } on PlatformException {
       barcodeScanRes = 'Failed to get platform version.';
     }
@@ -82,9 +83,10 @@ class _ScanScreenState extends State<ScanScreen> {
                   ),
                 ],
               ),
-              onPressed: () {
-                scanQR();
-                _repository.scanCode(jsonResponse);
+              onPressed: () async {
+                await scanQR();
+                var strings = _scanBarcode.split(';');
+                _repository.scanCode(strings);
                 // _repository.fakeScanCode();
               },
             ),
