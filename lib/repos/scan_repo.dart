@@ -16,20 +16,24 @@ class ScanRepository {
     // DateTime start = DateTime.parse(strings[1]);
     // DateTime end = DateTime.parse(strings[2]);
     // print(DateTime.now().isBefore(end));
-    var a = await _checkCourse(courseID);
-    // if (DateTime.now().isBefore(end)) {
-    //   await _markAttendance(true, courseID).then((value) async {
-    //     if (value == 400) {
-    //       // await _addStudent(courseID);
-    //     }
-    //   });
-    // } else {
-    //   await _markAttendance(false, courseID).then((value) async {
-    //     if (value == 400) {
-    //       // await _addStudent(courseID);
-    //     }
-    //   });
-    // }
+    var inCourse = await _checkCourse(courseID);
+    if (inCourse == true) {
+      // if (DateTime.now().isBefore(end)) {
+      //   await _markAttendance(true, courseID).then((value) async {
+      //     if (value == 400) {
+      // await _addStudent(courseID);
+      //     }
+      //   });
+      // } else {
+      //   await _markAttendance(false, courseID).then((value) async {
+      //     if (value == 400) {
+      // await _addStudent(courseID);
+      //     }
+      //   });
+      // }
+    } else {
+      await _addStudent(courseID);
+    }
   }
 
   Future _markAttendance(bool status, String courseID) async {
