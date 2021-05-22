@@ -13,24 +13,16 @@ class ScanRepository {
 
   Future scanCode(List<String> strings) async {
     String courseID = strings[0].substring(1);
-    // DateTime start = DateTime.parse(strings[1]);
-    // DateTime end = DateTime.parse(strings[2]);
-    // print(DateTime.now().isBefore(end));
+    DateTime start = DateTime.parse(strings[1]);
+    DateTime end =
+        DateTime.parse(strings[2].substring(0, strings[2].length - 1));
     var inCourse = await _checkCourse(courseID);
     if (inCourse == true) {
-      // if (DateTime.now().isBefore(end)) {
-      //   await _markAttendance(true, courseID).then((value) async {
-      //     if (value == 400) {
-      // await _addStudent(courseID);
-      //     }
-      //   });
-      // } else {
-      //   await _markAttendance(false, courseID).then((value) async {
-      //     if (value == 400) {
-      // await _addStudent(courseID);
-      //     }
-      //   });
-      // }
+      if (DateTime.now().isBefore(end)) {
+        await _markAttendance(true, courseID);
+      } else {
+        await _markAttendance(false, courseID);
+      }
     } else {
       await _addStudent(courseID);
     }
