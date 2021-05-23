@@ -17,14 +17,20 @@ class ScanRepository {
     DateTime end =
         DateTime.parse(strings[2].substring(0, strings[2].length - 1));
     var inCourse = await _checkCourse(courseID);
-    if (inCourse == true) {
+    if (inCourse == false) {
       if (DateTime.now().isBefore(end)) {
         await _markAttendance(true, courseID);
       } else {
         await _markAttendance(false, courseID);
       }
     } else {
-      await _addStudent(courseID);
+      await _addStudent(courseID).then((value) async {
+        if (DateTime.now().isBefore(end)) {
+          await _markAttendance(true, courseID);
+        } else {
+          await _markAttendance(false, courseID);
+        }
+      });
     }
   }
 
