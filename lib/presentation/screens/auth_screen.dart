@@ -14,6 +14,11 @@ class AuthScreen extends ConsumerWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Image.asset(
+              'assets/traQR.png',
+              height: 100,
+            ),
+            SizedBox(height: 100),
             Text(
               "Create your account with your VIT email!",
               style: TextStyle(fontSize: 24),
@@ -46,7 +51,8 @@ class AuthScreen extends ConsumerWidget {
                   _auth.signInWithGoogle();
                 },
               ),
-            )
+            ),
+            SizedBox(height: 150),
           ],
         ),
       ),
