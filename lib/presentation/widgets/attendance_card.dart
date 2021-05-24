@@ -25,10 +25,10 @@ class AttendanceCard extends StatelessWidget {
                     .toString()),
                 Spacer(),
                 Icon(
-                  attendance.status == true
+                  attendance.status == 'Present'
                       ? Icons.done_rounded
                       : Icons.close_rounded,
-                  color: attendance.status == true ? green : pink,
+                  color: attendance.status == 'Present' ? green : pink,
                 )
               ],
             ),
